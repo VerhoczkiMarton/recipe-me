@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Search {
     String query;
-    Diet diet;
-    Health health;
+    String diet;
+    String health;
     int caloriesFrom;
     int caloriesTo;
     int timeFromInMinutes;
@@ -20,19 +20,19 @@ public class Search {
         this.query = query;
     }
 
-    public Diet getDiet() {
+    public String getDiet() {
         return diet;
     }
 
-    public void setDiet(Diet diet) {
+    public void setDiet(String diet) {
         this.diet = diet;
     }
 
-    public Health getHealth() {
+    public String getHealth() {
         return health;
     }
 
-    public void setHealth(Health health) {
+    public void setHealth(String health) {
         this.health = health;
     }
 
