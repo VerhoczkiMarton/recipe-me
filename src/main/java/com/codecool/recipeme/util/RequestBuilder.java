@@ -1,14 +1,14 @@
 package com.codecool.recipeme.util;
 
 import com.codecool.recipeme.model.Search;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
+import com.codecool.recipeme.service.RecipeSearch;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 
 public class RequestBuilder {
-    private static final String appId = "";
-    private static final String appKey = "";
+    @Autowired
+    RecipeSearch recipeSearch;
 
     /**
      * Generates a MultiValueMap for the request based on the Search object.
@@ -17,17 +17,15 @@ public class RequestBuilder {
      * @return MultiValueMap for request parameters.
      * @throws IllegalAccessException
      */
-    public static MultiValueMap getParameterMap(Search search) throws IllegalAccessException {
-        MultiValueMap<String, String> parameterMap = new LinkedMultiValueMap<>();
-        Field[] fields = search.getClass().getFields();
+    public static String getParameterMap(Search search) throws IllegalAccessException {
+        String queryString = "?";
+        Field[] fields = Search.class.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
             if (field.get(search) != null) {
-                parameterMap.add(field.getName(), (String) field.get(search));
+                queryString += field.getName() + "=" + (String) field.get(search) + "&";
             }
         }
-        parameterMap.add("app_id", appId);
-        parameterMap.add("app_key", appKey);
-        return parameterMap;
+        return queryString.substring(0, queryString.length() - 1);
     }
 }
