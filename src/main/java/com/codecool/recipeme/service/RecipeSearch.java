@@ -17,7 +17,7 @@ public class RecipeSearch {
     @Autowired
     RecipeRepository recipeRepository;
 
-    public List<Recipe> getRecipesBySearch(Search search) throws IllegalAccessException {
+    public List<Recipe> getRecipesBySearch(Search search) throws IllegalAccessException, NoSuchFieldException {
         Response response = recipeRepository.getResponse(search);
         return response.getHits().stream().map(HitsItem::getRecipe).collect(Collectors.toList());
     }
