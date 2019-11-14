@@ -11,13 +11,13 @@ public class RequestBuilder {
     RecipeSearch recipeSearch;
 
     /**
-     * Generates a MultiValueMap for the request based on the Search object.
+     * Generates a query string for the request based on the Search object.
      *
-     * @param search Search object for the parameters
-     * @return MultiValueMap for request parameters.
+     * @param search
+     * @return String of request parameters.
      * @throws IllegalAccessException
      */
-    public static String getParameterMap(Search search) throws IllegalAccessException {
+    public static String getQueryString(Search search) throws IllegalAccessException {
         String queryString = "?";
         Field[] fields = Search.class.getDeclaredFields();
         for (Field field : fields) {
