@@ -56,11 +56,28 @@ public class Recipe {
     @JsonProperty("ingredients")
     private List<IngredientsItem> ingredients;
 
-    @JsonProperty("totalDaily")
-    private TotalDaily totalDaily;
-
     @JsonProperty("ingredientLines")
     private List<String> ingredientLines;
+
+    protected Recipe(String image, String shareAs, List<String> cautions, List<String> healthLabels, double totalTime, String label, String source, double calories, String uri, String url, TotalNutrients totalNutrients, List<String> dietLabels, double yield, double totalWeight, List<DigestItem> digest, List<IngredientsItem> ingredients, List<String> ingredientLines) {
+        this.image = image;
+        this.shareAs = shareAs;
+        this.cautions = cautions;
+        this.healthLabels = healthLabels;
+        this.totalTime = totalTime;
+        this.label = label;
+        this.source = source;
+        this.calories = calories;
+        this.uri = uri;
+        this.url = url;
+        this.totalNutrients = totalNutrients;
+        this.dietLabels = dietLabels;
+        this.yield = yield;
+        this.totalWeight = totalWeight;
+        this.digest = digest;
+        this.ingredients = ingredients;
+        this.ingredientLines = ingredientLines;
+    }
 
     public String getImage() {
         return image;
@@ -190,13 +207,6 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    public TotalDaily getTotalDaily() {
-        return totalDaily;
-    }
-
-    public void setTotalDaily(TotalDaily totalDaily) {
-        this.totalDaily = totalDaily;
-    }
 
     public List<String> getIngredientLines() {
         return ingredientLines;
@@ -205,6 +215,7 @@ public class Recipe {
     public void setIngredientLines(List<String> ingredientLines) {
         this.ingredientLines = ingredientLines;
     }
+
 
     @Override
     public String toString() {
@@ -226,7 +237,6 @@ public class Recipe {
                         ",totalWeight = '" + totalWeight + '\'' +
                         ",digest = '" + digest + '\'' +
                         ",ingredients = '" + ingredients + '\'' +
-                        ",totalDaily = '" + totalDaily + '\'' +
                         ",ingredientLines = '" + ingredientLines + '\'' +
                         "}";
     }
