@@ -1,11 +1,9 @@
 package com.codecool.recipeme.model;
 
-import com.codecool.recipeme.model.database.RecipeDB;
+import com.codecool.recipeme.model.generated.Recipe;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class ShoppingCart {
@@ -13,8 +11,9 @@ public class ShoppingCart {
     @GeneratedValue
     long id;
 
-    @OneToOne
-    RecipeDB recipe;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "shoppingCart")
+    @ElementCollection
+    List<Recipe> recipes;
 
 
     public long getId() {
