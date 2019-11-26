@@ -23,7 +23,7 @@ public class RequestBuilder {
         for (Field field : fields) {
             field.setAccessible(true);
             if (field.get(search) != null) {
-                queryString += field.getName() + "=" + (String) field.get(search) + "&";
+                queryString += field.getName() + "=" + field.get(search).toString() + "&";
             }
         }
         return queryString.substring(0, queryString.length() - 1);
