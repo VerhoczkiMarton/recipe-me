@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import static com.codecool.recipeme.util.RequestBuilder.getParameterMap;
+import static com.codecool.recipeme.util.RequestBuilder.getQueryString;
 
 @Component
 public class RecipeRepository implements ApiRepository {
@@ -26,7 +26,7 @@ public class RecipeRepository implements ApiRepository {
 
     public Response getResponse(Search search) throws IllegalAccessException, NoSuchFieldException {
         RestTemplate restTemplate = new RestTemplate();
-        String queryString = getParameterMap(search);
+        String queryString = getQueryString(search);
         String credentialString = getApiCredentials();
         String url = new StringBuilder().append(apiUrl).append(queryString).append(credentialString).toString();
         Response response = restTemplate.getForObject(url, Response.class);
