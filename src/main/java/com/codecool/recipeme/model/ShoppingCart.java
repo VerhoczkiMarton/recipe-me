@@ -14,7 +14,7 @@ public class ShoppingCart {
     long id;
 
     @OneToOne
-    RecipeDB recipeDB;
+    RecipeDB recipe;
 
 
     public long getId() {

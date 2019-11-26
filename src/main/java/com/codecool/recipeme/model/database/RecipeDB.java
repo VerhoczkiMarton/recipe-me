@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import java.util.List;
 
 
-@Entity
+@Entity(name = "Recipe")
 public class RecipeDB {
 
     @Id
