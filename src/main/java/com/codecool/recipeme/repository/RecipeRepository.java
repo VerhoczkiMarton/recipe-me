@@ -2,7 +2,7 @@ package com.codecool.recipeme.repository;
 
 import com.codecool.recipeme.model.Search;
 import com.codecool.recipeme.model.generated.Response;
-import com.codecool.recipeme.service.RecipeSearch;
+import com.codecool.recipeme.service.RecipeSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ public class RecipeRepository implements ApiRepository {
     String APIID;
 
     @Autowired
-    RecipeSearch recipeSearch;
+    RecipeSearchService recipeSearchService;
 
     public Response getResponse(Search search) throws IllegalAccessException, NoSuchFieldException {
         RestTemplate restTemplate = new RestTemplate();
