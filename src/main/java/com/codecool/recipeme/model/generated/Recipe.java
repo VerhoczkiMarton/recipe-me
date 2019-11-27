@@ -1,5 +1,6 @@
 package com.codecool.recipeme.model.generated;
 
+import com.codecool.recipeme.model.Favourite;
 import com.codecool.recipeme.model.ShoppingCart;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,6 +17,9 @@ public class Recipe {
 
     @ManyToOne()
     private ShoppingCart shoppingCart;
+
+    @ManyToOne()
+    private Favourite favourite;
 
     @JsonProperty("image")
     private String image;
