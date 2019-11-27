@@ -20,9 +20,11 @@ public class Favourite {
     @GeneratedValue
     private long id;
 
+    @Column(nullable = false)
+    public long userId;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "favourite")
     @ElementCollection
     List<Recipe> recipes;
-
 
 }
