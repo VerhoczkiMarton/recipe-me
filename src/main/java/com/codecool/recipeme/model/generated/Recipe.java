@@ -50,6 +50,10 @@ public class Recipe {
     @JsonProperty("uri")
     private String uri;
 
+    public void setFavourite(Favourite favourite) {
+        this.favourite = favourite;
+    }
+
     @JsonProperty("url")
     private String url;
 
