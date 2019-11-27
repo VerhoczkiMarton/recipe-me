@@ -1,12 +1,21 @@
 package com.codecool.recipeme.model.generated;
 
+import com.codecool.recipeme.model.ShoppingCart;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.annotation.Generated;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 @Generated("com.robohorse.robopojogenerator")
 public class Recipe {
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @ManyToOne()
+    private ShoppingCart shoppingCart;
 
     @JsonProperty("image")
     private String image;
@@ -14,9 +23,11 @@ public class Recipe {
     @JsonProperty("shareAs")
     private String shareAs;
 
+    @ElementCollection
     @JsonProperty("cautions")
     private List<String> cautions;
 
+    @ElementCollection
     @JsonProperty("healthLabels")
     private List<String> healthLabels;
 
@@ -38,9 +49,11 @@ public class Recipe {
     @JsonProperty("url")
     private String url;
 
+    @Transient
     @JsonProperty("totalNutrients")
     private TotalNutrients totalNutrients;
 
+    @ElementCollection
     @JsonProperty("dietLabels")
     private List<String> dietLabels;
 
@@ -50,17 +63,44 @@ public class Recipe {
     @JsonProperty("totalWeight")
     private double totalWeight;
 
+    @Transient
+    @ElementCollection
     @JsonProperty("digest")
     private List<DigestItem> digest;
 
+    @ElementCollection
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "recipe")
     @JsonProperty("ingredients")
     private List<IngredientsItem> ingredients;
 
-    @JsonProperty("totalDaily")
-    private TotalDaily totalDaily;
-
+    @ElementCollection
     @JsonProperty("ingredientLines")
     private List<String> ingredientLines;
+
+    public Recipe() {
+    }
+
+    ;
+
+    public Recipe(String image, String shareAs, List<String> cautions, List<String> healthLabels, double totalTime, String label, String source, double calories, String uri, String url, TotalNutrients totalNutrients, List<String> dietLabels, double yield, double totalWeight, List<DigestItem> digest, List<IngredientsItem> ingredients, List<String> ingredientLines) {
+        this.image = image;
+        this.shareAs = shareAs;
+        this.cautions = cautions;
+        this.healthLabels = healthLabels;
+        this.totalTime = totalTime;
+        this.label = label;
+        this.source = source;
+        this.calories = calories;
+        this.uri = uri;
+        this.url = url;
+        this.totalNutrients = totalNutrients;
+        this.dietLabels = dietLabels;
+        this.yield = yield;
+        this.totalWeight = totalWeight;
+        this.digest = digest;
+        this.ingredients = ingredients;
+        this.ingredientLines = ingredientLines;
+    }
 
     public String getImage() {
         return image;
@@ -190,13 +230,6 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    public TotalDaily getTotalDaily() {
-        return totalDaily;
-    }
-
-    public void setTotalDaily(TotalDaily totalDaily) {
-        this.totalDaily = totalDaily;
-    }
 
     public List<String> getIngredientLines() {
         return ingredientLines;
@@ -205,6 +238,7 @@ public class Recipe {
     public void setIngredientLines(List<String> ingredientLines) {
         this.ingredientLines = ingredientLines;
     }
+
 
     @Override
     public String toString() {
@@ -226,7 +260,6 @@ public class Recipe {
                         ",totalWeight = '" + totalWeight + '\'' +
                         ",digest = '" + digest + '\'' +
                         ",ingredients = '" + ingredients + '\'' +
-                        ",totalDaily = '" + totalDaily + '\'' +
                         ",ingredientLines = '" + ingredientLines + '\'' +
                         "}";
     }
