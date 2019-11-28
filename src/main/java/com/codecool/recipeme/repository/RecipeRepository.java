@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findAllByShoppingCartId(Long id);
+
+    List<Recipe> findAllByFavouriteId(Long id);
+
 }
