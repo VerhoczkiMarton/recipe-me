@@ -4,6 +4,7 @@ import com.codecool.recipeme.model.Search;
 import com.codecool.recipeme.model.generated.Recipe;
 import com.codecool.recipeme.repository.ShoppingCartRepository;
 import com.codecool.recipeme.service.RecipeSearch;
+import com.codecool.recipeme.service.RecipeSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,8 @@ import java.util.List;
 public class SearchController {
 
     @Autowired
-    RecipeSearch recipeSearch;
+    RecipeSearchService recipeSearchService;
+
 
     @Autowired
     ShoppingCartRepository shoppingCartRepository;
@@ -29,7 +31,7 @@ public class SearchController {
      */
     @RequestMapping("/search")
     public List<Recipe> getResult(@RequestBody Search search) throws IllegalAccessException, NoSuchFieldException {
-        List<Recipe> recipes = recipeSearch.getRecipesBySearch(search);
+        List<Recipe> recipes = recipeSearchService.getRecipesBySearch(search);
         return recipes;
     }
 }

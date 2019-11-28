@@ -1,14 +1,14 @@
 package com.codecool.recipeme.util;
 
 import com.codecool.recipeme.model.Search;
-import com.codecool.recipeme.service.RecipeSearch;
+import com.codecool.recipeme.service.RecipeSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 
 public class RequestBuilder {
     @Autowired
-    RecipeSearch recipeSearch;
+    RecipeSearchService recipeSearchService;
 
     /**
      * Generates a query string for the request based on the Search object.
