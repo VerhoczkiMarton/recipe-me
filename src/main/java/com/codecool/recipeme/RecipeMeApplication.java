@@ -1,6 +1,8 @@
 package com.codecool.recipeme;
 
+import com.codecool.recipeme.model.Favourite;
 import com.codecool.recipeme.model.ShoppingCart;
+import com.codecool.recipeme.repository.FavouriteRepository;
 import com.codecool.recipeme.repository.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +17,9 @@ public class RecipeMeApplication {
     @Autowired
     ShoppingCartRepository shoppingCartRepository;
 
+    @Autowired
+    FavouriteRepository favouriteRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(RecipeMeApplication.class, args);
     }
@@ -25,6 +30,8 @@ public class RecipeMeApplication {
         return args -> {
             ShoppingCart shoppingCart = new ShoppingCart();
             shoppingCartRepository.saveAndFlush(shoppingCart);
+            Favourite favourite = new Favourite();
+            favouriteRepository.saveAndFlush(favourite);
         };
     }
 }
